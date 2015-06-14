@@ -65,7 +65,7 @@ class Class_model extends CI_Model {
 		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'id';
 	
 		// results query
-		$q = $this->db->select('class.id, , class.name, subject.name subject_name, class.description')
+		$q = $this->db->select('class.id, class.name, subject.name subject_name, class.description')
 		->from('class')
 		->join('subject','class.subject_id=subject.id','left')
 		->limit($limit, $offset)
