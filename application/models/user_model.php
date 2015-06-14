@@ -91,4 +91,51 @@ class User_model extends CI_Model {
 			return NULL;
 		}
 	}
+	
+	function get_class_admin_user($username='') {
+	
+		$this->db->where('role','3');
+		if($username !='') {
+			$this->db->where('username',$username);
+		}
+		$query = $this->db->get('user')->result();
+	
+		if($query) {
+			$i = 0;
+			$ret = array();
+			foreach ($query as $user) {
+				$username = $user->username;
+				$q = $this->db->select('class.id, class.name, class.subject_id')
+				->from('user_role_code')
+				->join('class','user_role_code.role_code=class.id','left')
+				->where('user_role_code.username', $username);
+	
+				$classes = $q->get()->result();
+				if($classes) {
+					$subject = $this->subject_model->get_record_by_id($classes['0']->subject_id);
+					$subject_id = $subject['0']->id;
+					$subject_name = $subject['0']->name;
+				} else {
+					$subject_id = null;
+					$subject_name = null;
+				}
+	
+				$record = array();
+				$record['username'] = $username;
+				$record['role']     = '3';
+				$record['classes'] = $classes;
+				$record['subject_name'] = $subject_name;
+				$record['subject_id'] = $subject_id;
+				
+				$ret[$i] = $record;
+	
+				$i++;
+	
+			}
+			return $ret;
+		} else {
+			return NULL;
+		}
+	}
+	
 }
