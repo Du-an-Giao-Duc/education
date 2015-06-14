@@ -2,4 +2,5 @@ eclipse.preferences.version=1
 encoding//application/views/admin/chuong_view/chuong_list.php=UTF-8
 encoding//application/views/admin/class_view/class_list.php=UTF-8
 encoding//application/views/admin/subject_view/subject_list.php=UTF-8
+encoding//application/views/template.php=UTF-8
 encoding//application/views/user/user_role/user_list.php=UTF-8

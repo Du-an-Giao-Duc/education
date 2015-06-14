@@ -57,6 +57,12 @@
                 //customtheme: ["#804000", "#482400"],
                 contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
             });
+
+            $(function() {
+
+                $('#modaltrigger').leanModal({top: 110, overlay: 0.45});
+                $('#modaltrigger1').leanModal({top: 110, overlay: 0.45});
+            });
         </script>       
 
     </head>
@@ -87,6 +93,109 @@
                             }
                         }
                         ?>
+                    </ul>
+                    
+                    <ul id="loginContainer">
+                        <?php
+                        if (isset($this->session->userdata['username'])) {
+                            echo "<li><a href='#'>Xin chào " . $this->session->userdata['username'] . " &#12485;</a></li>";
+                            ?>
+                            <li><a href="login/login_controller/logout">Logout</a></li> 
+                        <?php } else { ?>
+                            <!-- LOG IN : start -->
+                            <li><a href="#loginmodal" id="modaltrigger">Login</a>
+                                <div id="loginmodal" style="display:none;">
+                                    <h1>Login information</h1>
+                                    <form id="loginform" name="loginform" method="post" action="login/login_controller/login">
+                                        <label for="username">Username:</label>
+                                        <input type="text" name="username" id="username1" class="txtfield" tabindex="1" required autofocus
+                                        <?php if ($this->input->cookie('username')) { ?>
+                                                   value='<?php echo $this->input->cookie('username'); ?>'
+                                                   <?php
+                                                }
+                                               ?>
+                                               />
+
+                                        <label for="password">Password:</label>
+                                        <input type="password" name="password" id="password1" class="txtfield" tabindex="2" required
+                                        <?php
+                                        if ($this->input->cookie('password')) {
+                                            $users = $this->user_model->get_record_by_username($this->input->cookie('username'));
+                                            $user = $users['0'];
+                                            $db_password = $user->password;
+                                            if ($this->input->cookie('password') == md5($db_password)) {
+                                                ?>
+                                                       value='<?php echo $db_password ?>'
+                                                       <?php
+                                                   }
+                                               } 
+                                               ?>
+                                               />
+
+                                        <input type="checkbox" name="rememberme" id="rememberme" value="1" tabindex="3">Remember Me
+                                        <br />
+                                        <?php
+                                        if (isset($this->session->userdata['login_error'])) {
+                                            echo "<br /><div class='error_msg'>" . $this->session->userdata['login_error'] . "</div>";
+                                            ?>
+                                            <script type="text/javascript">
+                                                $(function() {
+                                                    $('#modaltrigger').click();
+                                                });
+                                            </script>
+                                        <?php } ?>
+                                        <br />
+                                        <input type="submit" name="loginbtn" id="loginbtn" class="flatbtn-blu" value="Login" tabindex="4" />
+                                    </form>                                    
+                                </div>
+                            </li> 
+                            <!-- LOG IN : end -->  
+
+                            <!-- REGISTER : Start -->                        
+                            <li><a href="#registermodal" id="modaltrigger1">Sign Up</a>
+                                <div id="registermodal" style="display:none;">
+                                    <h1>Sign Up Information</h1>
+                                    <?php echo form_open('login/login_controller/register');?>
+<!--                                     <form id="registerform" name="registerform" method="post" action="login/login/register"> -->
+                                        <label for="r_username">Username:</label>
+                                        <input type="text" name="r_username" id="r_username" class="txtfield" tabindex="1" required autofocus />
+
+                                        <script type='text/javascript'>
+                                            function check() {
+                                                var pass = document.getElementById('r_password');
+                                                var cf_pass = document.getElementById('cf_password');
+                                                if (pass.value.length < 5) {
+                                                    pass.setCustomValidity('Mật khẩu phải dài hơn 5 ký tự');
+                                                } else {
+                                                    // input is valid -- reset the error message
+                                                    pass.setCustomValidity('');
+                                                }
+                                                if (cf_pass.value != pass.value) {
+                                                    cf_pass.setCustomValidity('Mật khẩu xác nhận không đúng');
+                                                } else {
+                                                    // input is valid -- reset the error message
+                                                    cf_pass.setCustomValidity('');
+                                                }
+                                            }
+                                        </script>
+                                        <label for="password">Password:</label>
+                                        <input type="password" name="r_password" id="r_password" 
+                                               class="txtfield" tabindex="2" required oninput="check()" />
+
+                                        <label for="cf_password">Confirm Password:</label>
+                                        <input type="password" name="cf_password" id="cf_password" 
+                                               class="txtfield" tabindex="3" required oninput="check()" />
+
+                                        <label for="r_email">Email:</label>
+                                        <input type="email" name="r_email" id="r_email" class="txtfield" tabindex="4" required />
+
+                                        <input type="submit" name="registerbtn" id="registerbtn" class="flatbtn-blu" value="Sign Up" tabindex="5" />
+                                        <?php echo form_close();?>
+<!--                                     </form>                                     -->
+                                </div>
+                            </li> 
+                            <!-- REGISTER : end -->                        
+                        <?php } // end of check login ?> 
                     </ul>
 
                     <br style="clear: left" />
