@@ -1,9 +1,9 @@
 <script>
     function showConfirmDelete(id)
     {
-        var c = confirm("Bạn có chắc chắn muốn xóa môn học này?");
+        var c = confirm("Bạn có chắc chắn muốn xóa User này?");
         if (c)
-        	window.location ="subject_admin/delete/" + id;
+        	window.location ="role_assign/delete/" + id;
     }
 
 </script>
@@ -19,11 +19,26 @@ $pop_up_atts = array(
 );
 if(isset($records)):
 $fields = array(
-		'id' => 'ID',
-		'name' => 'Name',
-		'description' => 'Description'
+		'username' => 'Username',
+		'role'     => 'Role',
+		'role_post'   => 'Role Post',
+		'role_edit'   => 'Role Edit',
+		'email'       => 'Email',
+		'reg_date'    => 'Reg Date'
 );
 ?>
+<?php echo form_open('user_admin/role_assign'); ?>
+
+<div>
+		<?php echo form_label('Username:', 'username'); ?>
+		<?php echo form_input('username', set_value('username'), 'id="username"'); ?>
+</div>
+
+<div>
+		<?php echo form_submit('submit', 'Search'); ?>
+</div>
+
+<?php echo form_close(); ?>
 <table class='tblOverview'>
   <tr>
     <th style='width: 10%'></th>
@@ -33,24 +48,26 @@ $fields = array(
 	<?php endforeach; ?>
   </tr>
   
-  <?php foreach ($records as $subject): ?>
+  <?php foreach ($records as $user): ?>
   <tr>
   		<td>
   		 <?php 
-  		 echo anchor_popup("admin/subject_admin/update/$subject->id", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Edit</image>",$pop_up_atts);?>
+  		 echo anchor_popup("user_admin/role_assign/update/$user->username", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Edit</image>",$pop_up_atts);?>
         </td>
          <td>
-             <a href='#' onclick='showConfirmDelete(<?php echo $subject->id;?>)'>
+             <a href='#' onclick='showConfirmDelete("<?php echo $user->username;?>")'>
                 <image src='<?php echo $base_url;?>images/delete/delete_16x16.png' alt='Delete'>Delete</image>
              </a>
         </td>
-        <td><?php echo $subject->id;?></td>
-        <td><?php echo anchor("admin/class_admin/index/$subject->id", "$subject->name");?></td>
-        <td><?php echo $subject->description;?></td>
+        <td><?php echo $user->username;?></td>
+        <td><?php $roles = $this->config->item('roles'); echo $roles[$user->role];?></td>
+        <td><?php echo $user->role_post;?></td>
+        <td><?php echo $user->role_edit;?></td>
+        <td><?php echo $user->email;?></td>
+        <td><?php echo $user->reg_date;?></td>
   </tr>
   <?php endforeach; ?>
 </table>
 <?php else: ?>
 <h2>No records found</h2>
 <?php endif;?>
-<?php echo anchor_popup("admin/subject_admin/add", "<image src='$base_url/images/add/add_16x16.png' alt='Add'>Add subject</image>", $pop_up_atts);?>

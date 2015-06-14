@@ -10,9 +10,19 @@ $left_menu = array(
 		);
 
 $user_admin_left_menu = array(
-		'Role Assignation' => 'user_admin/role_assign',
+		'Role Assignation'   => 'user_admin/role_assign',
 		'Subject Admin Role' => 'user_admin/subject_admin_role',
-		'Class Admin Role' => 'user_admin/class_admin_role'
+		'Class Admin Role'   => 'user_admin/class_admin_role'
 );
+
+$roles = array(
+		'1' => 'Full Admin',
+		'2' => 'Subject Admin',
+		'3' => 'Class Admin',
+		'4' => 'Typing Question',
+		'5' => 'Normal User'
+);
+
 $config['left_menu'] = $left_menu;
 $config['user_admin_left_menu'] = $user_admin_left_menu;
+$config['roles'] = $roles;

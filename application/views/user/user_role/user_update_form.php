@@ -1,18 +1,27 @@
 	<h2>Update</h2>
 	<?php if (isset($record)): $row = $record[0];
-		  $hidden = array('id' => $row->id);
 	?>
 	
-	<?php echo form_open('admin/subject_admin/update','',$hidden); ?>
+	<?php echo form_open('user_admin/role_assign/update'); ?>
 	
 	<p>
-		<?php echo form_label('Subject Name:', 'name'); ?>
-		<?php echo form_input('name', $row->name, 'id="name"'); ?>
+		<?php echo form_label('User Name:', 'username'); ?>
+		<?php echo form_input('username', $row->username, 'id="username" readonly="true"'); ?>
 	</p>
 	
 	<p>
-		<?php echo form_label('Subject Description:', 'description'); ?>
-		<?php echo form_input('description', $row->description, 'id="description"'); ?>
+		<?php echo form_label('Role:', 'role'); ?>
+		<?php echo form_dropdown('role', $role_options, set_value('role', $row->role),'id="role"');?>
+	</p>
+	
+	<p>
+		<?php echo form_label('Role Post:', 'role_post'); ?>
+		<?php echo form_checkbox('role_post', set_value('role_post', '1'), ($row->role_post=='1'?TRUE:FALSE),'id="role_post"');?>
+	</p>
+	
+	<p>
+		<?php echo form_label('Role Edit:', 'role_edit'); ?>
+		<?php echo form_checkbox('role_edit', set_value('role_edit', '1'), ($row->role_edit=='1'?TRUE:FALSE),'id="role_edit"');?>
 	</p>
 	
 	<p>

@@ -1,5 +1,5 @@
 <?php
-class Subject_model extends CI_Model {
+class User_model extends CI_Model {
 	function get_all_records() {
 		$query = $this->db->get('user');
 		return $query->result();
