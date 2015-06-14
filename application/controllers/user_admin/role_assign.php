@@ -26,21 +26,26 @@ class Role_assign extends CI_Controller {
 		if($this->input->post('submit'))
 		{
 			$username = $this->input->post('username');
+			$users = $this->user_model->get_record_by_username($username);
+			$user = $users['0'];
+			$role = $this->input->post('role');
+			if($role != $user->role) {
+				$this->user_model->delete_user_role_code($username);
+			}
+			$data = array(
+					'role' => $this->input->post('role'),
+					'role_post'   => $this->input->post('role_post'),
+					'role_edit'   => $this->input->post('role_edit')
+			);
 				
-				$data = array(
-						'role' => $this->input->post('role'),
-						'role_post'   => $this->input->post('role_post'),
-						'role_edit'   => $this->input->post('role_edit')
-				);
+			$return_true = $this->user_model->update_record_by_username($username, $data);
 				
-				$return_true = $this->user_model->update_record_by_username($username, $data);
-				
-				$data = array();
-				if($return_true) {
-					$query = $this->user_model->get_record_by_username($username);
-					$data['record'] = $query;
-				}
-				$this->load->view('user/user_role/user_confirm', $data);
+			$data = array();
+			if($return_true) {
+				$query = $this->user_model->get_record_by_username($username);
+				$data['record'] = $query;
+			}
+			$this->load->view('user/user_role/user_confirm', $data);
 		}
 		else
 		{
