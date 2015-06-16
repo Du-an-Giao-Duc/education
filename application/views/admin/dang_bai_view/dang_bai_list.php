@@ -1,4 +1,4 @@
-<style>
+﻿<style>
 		.sort_asc:after {
 			content: "▲";
 		}
@@ -48,7 +48,7 @@ $pop_up_atts = array(
 		'screenx'    => '400',
 		'screeny'    => '300'
 );
- echo form_open('admin/chuyen_de_admin');?>
+ echo form_open('admin/dang_bai_admin');?>
 		
 		<div>
 			<?php echo form_label('Subject:', 'subject'); ?>
@@ -66,6 +66,11 @@ $pop_up_atts = array(
 			<?php echo form_dropdown('chuonG', $chuong_options, 
 				set_value('chuong', $chuong_id), 'id="chuong"'); ?>
 		</div>
+		<div id='chuyen_de_options'>
+			<?php echo form_label('ChuyenDe:', 'chuyen_de'); ?>
+			<?php echo form_dropdown('ChuyenDe', $chuyen_de_options, 
+				set_value('chuyen_de', $chuyen_de_id), 'id="chuyen_de"'); ?>
+		</div>
 		<div>
 			<?php echo form_submit('submit', 'Search'); ?>
 		</div>
@@ -79,6 +84,7 @@ $fields = array(
 		'class_name' => 'Class',
 		'chuong_name' => 'Chuong',
 		'subject_name' =>'Subject',
+		'chuyen_de_name' => 'ChuyenDe',
 		'description' => 'Description'
 );
 ?>
@@ -88,31 +94,32 @@ $fields = array(
     <th style='width: 10%'></th>
     <?php foreach($fields as $field_name => $field_display): ?>
 			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
-				<?php echo anchor("admin/chuyen_de_admin/index/$class_id/$field_name/" .
+				<?php echo anchor("admin/dang_bai_admin/index/$class_id/$chuyen_de_id/$field_name/" .
 					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
 					$field_display); ?>
 			</th>
 	<?php endforeach; ?>
   </tr>
   
-  <?php foreach ($records as $chuyende): ?>
+  <?php foreach ($records as $dangbai): ?>
   <tr>
   		<td>
   		 <?php 
-  		 echo anchor_popup("admin/chuyen_de_admin/update/$chuyende->id", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Edit</image>",$pop_up_atts);?>
+  		 echo anchor_popup("admin/dang_bai_admin/update/$dangbai->id", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Edit</image>",$pop_up_atts);?>
         </td>
          <td>
-             <a href='#' onclick='showConfirmDelete(<?php echo $chuyende->id;?>)'>
+             <a href='#' onclick='showConfirmDelete(<?php echo $dangbai->id;?>)'>
                 <image src='<?php echo $base_url;?>images/delete/delete_16x16.png' alt='Delete'>Delete</image>
              </a>
         </td>
-        <td><?php echo $chuyende->id;?></td>
-        <td><?php echo $chuyende->order_number;?></td>
-        <td><?php echo anchor("admin/chuyen_de_admin/index/$chuyende->id", "$chuyende->name");?></td>
-         <td><?php echo $chuyende->chuong_name;?></td>
-        <td><?php echo $chuyende->class_name;?></td>
-         <td><?php echo $chuyende->subject_name;?></td>
-        <td><?php echo $chuyende->description;?></td>
+        <td><?php echo $dangbai->id;?></td>
+        <td><?php echo $dangbai->order_number;?></td>
+        <td><?php echo anchor("admin/dang_bai_admin/index/$dangbai->id", "$dangbai->name");?></td>
+		<td><?php echo $dangbai->chuyen_de_name;?></td>
+         <td><?php echo $dangbai->chuong_name;?></td>
+        <td><?php echo $dangbai->class_name;?></td>
+         <td><?php echo $dangbai->subject_name;?></td>
+        <td><?php echo $dangbai->description;?></td>
   </tr>
   <?php endforeach; ?>
 </table>
