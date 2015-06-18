@@ -87,7 +87,7 @@ $autoload['drivers'] = array();
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','form');
+$autoload['helper'] = array('url','form','cookie');
 
 
 /*
@@ -135,4 +135,4 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 
-$autoload['model'] = array('subject_model','class_model','chuong_model','chuyen_de_model', 'question_type_model');
+$autoload['model'] = array('subject_model','class_model','chuong_model','chuyen_de_model', 'question_type_model','user_model');

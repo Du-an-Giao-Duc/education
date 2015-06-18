@@ -91,7 +91,7 @@ function index($class_id = 0, $sort_by = 'id', $sort_order = 'asc', $offset = 0)
 		{
 				
 			// field name, error message, validation rules
-			$this->form_validation->set_rules('name', 'Name', 'trim|required|is_unique[chuong.name]');
+			$this->form_validation->set_rules('name', 'Name', 'trim|required|callback_check_chuong_name_for_add');
 			$this->form_validation->set_rules('description', 'Description', 'trim|required');
 			
 			if ($this->form_validation->run() == FALSE) {
@@ -223,6 +223,19 @@ function index($class_id = 0, $sort_by = 'id', $sort_order = 'asc', $offset = 0)
 		if ($this->chuong_model->get_record_by_name_id($name, $id))
 		{
 			$this->form_validation->set_message('check_chuong_name', 'The chuong name already exists.');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
+	
+	function check_chuong_name_for_add($name) {
+		$class_id = $this->session->userdata['class_id'];
+		if ($this->chuong_model->get_record_by_name_class_id($name, $class_id))
+		{
+			$this->form_validation->set_message('check_chuong_name_for_add', 'The chuong name already exists.');
 			return FALSE;
 		}
 		else

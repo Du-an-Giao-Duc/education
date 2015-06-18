@@ -190,4 +190,12 @@ class Chuong_model extends CI_Model {
 		$query = $this->db->get('chuong');
 		return $query->result();
 	}
+	
+	function get_record_by_name_class_id($name, $class_id) {
+		$this->db->where('name', $name);
+		$this->db->where('class_id', $class_id);
+		$query = $this->db->get('chuong');
+		return $query->result();
+	}
+	
 }
