@@ -23,6 +23,43 @@ $roles = array(
 		'5' => 'Normal User'
 );
 
+$full_admin_hMenu = array(
+		'Admin'             => 'admin',
+        'User Admin' 		=> 'user_admin',
+		'Review Question'	=> 'home'
+);
+
+$subject_admin_hMenu = array(
+		'Admin' 			=> 'admin',
+		'Review Question' 	=> 'home'
+);
+
+$class_admin_hMenu  = $subject_admin_hMenu;
+
+$typing_question_hMenu = array(
+		'Quiz'			=> 'quiz',
+		'Question'      => 'question'
+);
+
+$normal_user_hMenu = array(
+		'Luyen tap'     => 'luyentap',
+		'Kho de thi'    => 'khodethi',
+		'Hoi dap'		=> 'hoidap',
+		'Tin tuc'		=> 'tintuc'
+);
+
+$no_user_hMenu = $normal_user_hMenu;
+
+$hMenu = array();
+$hMenu['0'] = $no_user_hMenu;
+$hMenu['1'] = $full_admin_hMenu;
+$hMenu['2'] = $subject_admin_hMenu;
+$hMenu['3'] = $class_admin_hMenu;
+$hMenu['4'] = $typing_question_hMenu;
+$hMenu['5'] = $normal_user_hMenu;
+
+$config['hMenu'] = $hMenu;
+
 $config['left_menu'] = $left_menu;
 $config['user_admin_left_menu'] = $user_admin_left_menu;
 $config['roles'] = $roles;

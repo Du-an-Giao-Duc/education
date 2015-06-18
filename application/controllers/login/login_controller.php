@@ -12,7 +12,8 @@ class Login_controller extends CI_Controller {
 				if ($password == $db_password) {
 					$data = array(
 					'username' => $username,
-					'password' => $password
+					'password' => $password,
+					'role'     => $user->role
 					);
 					$this->session->set_userdata($data);
 					if($this->input->post('rememberme') && $this->input->post('rememberme') == '1') {

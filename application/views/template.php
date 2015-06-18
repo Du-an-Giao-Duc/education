@@ -98,10 +98,12 @@
             <div id="smoothcontainer">
                 <?php
                 
-                $hMenu = array("Admin" => 'admin',
-                    'Review Question' => 'home',
-                	'User Admin' => 'user_admin'
-                );?>
+                $hMenus = $this->config->item('hMenu');
+                if(isset($this->session->userdata['role'])) {
+                	$hMenu = $hMenus[$this->session->userdata['role']];
+                } else {
+	                $hMenu = $hMenus[0];
+                }?>
                 <div id="smoothmenu1" class="ddsmoothmenu">
                     <ul>
                         <?php
