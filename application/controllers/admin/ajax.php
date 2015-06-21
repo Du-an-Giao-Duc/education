@@ -4,17 +4,39 @@ class Ajax extends CI_Controller {
 		$subject_id = $this->input->post('subject_id');
 		
 		$class_options = $this->chuong_model->get_class_options($subject_id);
-		echo form_label('Class:', 'class'); 
+		echo form_label('Lớp Học:', 'class'); 
 		echo form_dropdown('class', $class_options, 
 		set_value('class', 0), 'id="class"'); 
 	}
+	
 	function get_chuong_options() {
 		$class_id = $this->input->post('class_id');
 	
-		$chuong_options = $this->chuyende_model->get_chuong_options($chuong_id);
-		echo form_label('Chuong:', 'chuong');
+		$chuong_options = $this->chuyen_de_model->get_chuong_options($class_id);
+		echo form_label('Chương:', 'chuong');
 		echo form_dropdown('chuong', $chuong_options,
 				set_value('chuong', 0), 'id="class"');
+	}
+	
+	function get_classes() {
+		$subject_id = $this->input->post('subject_id');
+		$classes = $this->class_model->get_record_by_subject_id($subject_id);
+		echo form_label('Lớp Học:', 'classes');
+		foreach ($classes as $class) {
+			echo "<li>";
+			echo form_label($class->name, 'class_name');
+			echo form_checkbox('role_code[]', set_value('role_code', $class->id), false, 'id="role_code"');
+			echo "</li>";
+		}
+	}
+	
+	function get_chuyen_de_options() {
+		$chuong_id = $this->input->post('chuong_id');
+	
+		$chuyende_options = $this->dang_bai_model->get_chuyen_de_options($chuong_id);
+		echo form_label('Chuyên Đề:', 'chuyen_de');
+		echo form_dropdown('chuyen_de', $chuyende_options,
+				set_value('chuyen_de', 0), 'id="chuyen_de"');
 	}
 	
 	function register() {
@@ -43,9 +65,9 @@ class Ajax extends CI_Controller {
 				);
 		
 				if($this->user_model->add_record($data)) {
-					echo "Your account is created successfully";
+					echo "Đăng kí thành công";
 				} else {
-					echo "Cannot create your account";
+					echo "Hệ thống đang lỗi. Không thể tạo tài khoản. Vui lòng thử lại";
 				}
 			}
 		}

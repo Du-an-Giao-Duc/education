@@ -4,18 +4,26 @@ function index($class_id = 0, $sort_by = 'id', $sort_order = 'asc', $offset = 0)
 		if ($this->input->post('submit')) {
 			$subject_id = $this->input->post('subject');
 			$class_id = $this->input->post('class');
-			$data = array(
-					'subject_id' => $subject_id,
-					'class_id' => $class_id
-			);
-			$this->session->set_userdata($data);
+			if(!isset($this->session->userdata['class_id']) || $this->session->userdata['class_id']!= $class_id){
+				$this->session->unset_userdata('subject_id');
+				$this->session->unset_userdata('class_id');
+				$this->session->unset_userdata('chuong_id');
+				$this->session->unset_userdata('chuyen_de_id');
+				$data = array(
+						'subject_id' => $subject_id,
+						'class_id' => $class_id
+				);
+				$this->session->set_userdata($data);
+			}
 		} else {
 			if($this->uri->segment(4)) {
 				$class_id = $this->uri->segment(4);
 				if(isset($this->session->userdata['class_id'])) {
 					if($this->session->userdata['class_id'] != $class_id) {
-						$this->session->unset_userdata['subject_id'];
-						$this->session->unset_userdata['class_id'];
+						$this->session->unset_userdata('subject_id');
+						$this->session->unset_userdata('class_id');
+						$this->session->unset_userdata('chuong_id');
+						$this->session->unset_userdata('chuyen_de_id');
 						$class = $this->class_model->get_record_by_id($class_id);
 						$subject_id = $class[0]->subject_id;
 						$data = array(
@@ -30,7 +38,7 @@ function index($class_id = 0, $sort_by = 'id', $sort_order = 'asc', $offset = 0)
 					$class = $this->class_model->get_record_by_id($class_id);
 					$subject_id = $class[0]->subject_id;
 					if(isset($this->session->userdata['subject_id'])) {
-						$this->session->unset_userdata['subject_id'];
+						$this->session->unset_userdata('subject_id');
 					}
 					$data = array(
 								'subject_id' => $subject_id,
@@ -78,21 +86,20 @@ function index($class_id = 0, $sort_by = 'id', $sort_order = 'asc', $offset = 0)
 		$content = $this->load->view('admin/chuong_view/chuong_list', $data, TRUE);
 		
 		$data = array();
-		$data['title'] = "Chuong";
+		$data['title'] = "Chương";
 		$data['leftmenu'] = $this->config->item('left_menu');
 		$data['content'] = $content;
 		$this->load->view('template', $data);
 	}
 	
-	//I'm here
 	function add() {
 	
 		if($this->input->post('submit'))
 		{
 				
 			// field name, error message, validation rules
-			$this->form_validation->set_rules('name', 'Name', 'trim|required|callback_check_chuong_name_for_add');
-			$this->form_validation->set_rules('description', 'Description', 'trim|required');
+			$this->form_validation->set_rules('name', 'Tên Chương', 'trim|required|callback_check_chuong_name_for_add');
+			$this->form_validation->set_rules('description', 'Mô Tả', 'trim|required');
 			
 			if ($this->form_validation->run() == FALSE) {
 				$class = $this->class_model->get_record_by_id($this->session->userdata['class_id']);
@@ -158,8 +165,8 @@ function index($class_id = 0, $sort_by = 'id', $sort_order = 'asc', $offset = 0)
 			$this->load->library('form_validation');
 			
 			// field name, error message, validation rules
-			$this->form_validation->set_rules('name', 'Name', 'trim|required|callback_check_chuong_name');
-			$this->form_validation->set_rules('description', 'Description', 'trim|required');
+			$this->form_validation->set_rules('name', 'Tên Chương', 'trim|required|callback_check_chuong_name');
+			$this->form_validation->set_rules('description', 'Mô Tả', 'trim|required');
 			
 			if($this->form_validation->run() == FALSE)
 			{
@@ -222,7 +229,7 @@ function index($class_id = 0, $sort_by = 'id', $sort_order = 'asc', $offset = 0)
 		$id = $this->input->post('id');
 		if ($this->chuong_model->get_record_by_name_id($name, $id))
 		{
-			$this->form_validation->set_message('check_chuong_name', 'The chuong name already exists.');
+			$this->form_validation->set_message('check_chuong_name', 'Chương này đã tồn tại');
 			return FALSE;
 		}
 		else
@@ -235,7 +242,7 @@ function index($class_id = 0, $sort_by = 'id', $sort_order = 'asc', $offset = 0)
 		$class_id = $this->session->userdata['class_id'];
 		if ($this->chuong_model->get_record_by_name_class_id($name, $class_id))
 		{
-			$this->form_validation->set_message('check_chuong_name_for_add', 'The chuong name already exists.');
+			$this->form_validation->set_message('check_chuong_name_for_add', 'Chương này đã tồn tại');
 			return FALSE;
 		}
 		else

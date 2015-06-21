@@ -3,16 +3,24 @@ class Class_admin extends CI_Controller {
 	function index($subject_id = 0, $sort_by = 'id', $sort_order = 'asc', $offset = 0) {
 		if ($this->input->post('submit')) {
 			$subject_id = $this->input->post('subject');
-			$data = array(
-					'subject_id' => $subject_id
-			);
-			$this->session->set_userdata($data);
+			if(!isset($this->session->userdata['subject_id']) || $this->session->userdata['subject_id'] != $subject_id) {
+				$data = array(
+						'subject_id' => $subject_id
+				);
+				$this->session->set_userdata($data);
+				$this->session->unset_userdata('class_id');
+				$this->session->unset_userdata('chuong_id');
+				$this->session->unset_userdata('chuyen_de_id');
+			}
 		} else {
 			if($this->uri->segment(4)) {
 				$subject_id = $this->uri->segment(4);
 				if(isset($this->session->userdata['subject_id'])) {
 					if($this->session->userdata['subject_id'] != $subject_id) {
-						$this->session->unset_userdata['subject_id'];
+						$this->session->unset_userdata('subject_id');
+						$this->session->unset_userdata('class_id');
+						$this->session->unset_userdata('chuong_id');
+						$this->session->unset_userdata('chuyen_de_id');
 						$data = array(
 								'subject_id' => $subject_id
 						);
@@ -58,7 +66,7 @@ class Class_admin extends CI_Controller {
 		$content = $this->load->view('admin/class_view/class_list', $data, TRUE);
 		
 		$data = array();
-		$data['title'] = "Class";
+		$data['title'] = "Lớp Học";
 		$data['leftmenu'] = $this->config->item('left_menu');
 		$data['content'] = $content;
 		$this->load->view('template', $data);
@@ -70,8 +78,8 @@ class Class_admin extends CI_Controller {
 		{
 				
 			// field name, error message, validation rules
-			$this->form_validation->set_rules('name', 'Name', 'trim|required|is_unique[class.name]');
-			$this->form_validation->set_rules('description', 'Description', 'trim|required');
+			$this->form_validation->set_rules('name', 'Tên Lớp Học', 'trim|required|callback_check_class_name_for_add');
+			$this->form_validation->set_rules('description', 'Mô Tả', 'trim|required');
 			
 			if ($this->form_validation->run() == FALSE) {
 				$subject = $this->subject_model->get_record_by_id($this->session->userdata['subject_id']);
@@ -113,8 +121,8 @@ class Class_admin extends CI_Controller {
 			$this->load->library('form_validation');
 			
 			// field name, error message, validation rules
-			$this->form_validation->set_rules('name', 'Name', 'trim|required|callback_check_class_name');
-			$this->form_validation->set_rules('description', 'Description', 'trim|required');
+			$this->form_validation->set_rules('name', 'Tên Lớp Học', 'trim|required|callback_check_class_name');
+			$this->form_validation->set_rules('description', 'Mô Tả', 'trim|required');
 			
 			if($this->form_validation->run() == FALSE)
 			{
@@ -164,7 +172,20 @@ class Class_admin extends CI_Controller {
 		$id = $this->input->post('id');
 		if ($this->class_model->get_record_by_name_id($name, $id))
 		{
-			$this->form_validation->set_message('check_class_name', 'The class name already exists.');
+			$this->form_validation->set_message('check_class_name', 'Lớp học này đã tồn tại');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
+	
+	function check_class_name_for_add($name) {
+		$subject_id = $this->session->userdata['subject_id'];
+		if ($this->class_model->get_record_by_name_subject_id($name, $subject_id))
+		{
+			$this->form_validation->set_message('check_class_name_for_add', 'Lớp học này đã tồn tại');
 			return FALSE;
 		}
 		else

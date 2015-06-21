@@ -6,7 +6,7 @@
         }
 
     </script>
-	<h2>Confirm</h2>
+	<h2>Xác Nhận</h2>
 	<?php if (isset($record)): $row = $record[0]?>
 	<p>
 		<label for="username">User Name:</label>
@@ -14,19 +14,19 @@
 	</p>
 	
 	<p>
-		<label for="role">Role:</label>
+		<label for="role">Loại User:</label>
 		<label for='role'><?php $roles = $this->config->item('roles');echo $roles[$row->role];?></label>
 	</p>
 	<p>
-		<label for="role_post">Role Post:</label>
+		<label for="role_post">Quyền Đăng Câu Hỏi:</label>
 		<label for='role_post'><?php echo $row->role_post;?></label>
 	</p>
 	<p>
-		<label for="role_edit">Role Edit:</label>
+		<label for="role_edit">Quyền Sửa Xóa Câu Hỏi:</label>
 		<label for='role_edit'><?php echo $row->role_edit;?></label>
 	</p>
 	<p>
-		Action is processed successfully.
+		Xử lý thành công
 	</p>
 	
 	<?php else: ?>

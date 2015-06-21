@@ -1,15 +1,3 @@
-<style>
-		.sort_asc:after {
-			content: "▲";
-		}
-		.sort_desc:after {
-			content: "▼";
-		}
-		label {
-			display: inline-block;
-			width: 120px;
-		}
-</style>
 
 <script>
     function showConfirmDelete(id)
@@ -33,13 +21,13 @@ $pop_up_atts = array(
  echo form_open('admin/class_admin');?>
 		
 		<div>
-			<?php echo form_label('Subject:', 'subject'); ?>
+			<?php echo form_label('Môn Học:', 'subject'); ?>
 			<?php echo form_dropdown('subject', $subject_options, 
 				set_value('subject', $subject_id), 'id="subject"'); ?>
 		</div>
 		
 		<div>
-			<?php echo form_submit('submit', 'Search'); ?>
+			<?php echo form_submit('submit', 'Tìm Kiếm'); ?>
 		</div>
 <?php echo form_close(); ?>
 	
@@ -49,9 +37,9 @@ if(!isset($subject_id)) {
 }
 $fields = array(
 		'id' => 'ID',
-		'name' => 'Name',
-		'subject_name' => 'Subject',
-		'description' => 'Description'
+		'name' => 'Tên Lớp',
+		'subject_name' => 'Môn Học',
+		'description' => 'Mô Tả Lớp'
 );
 ?>
 <table class='tblOverview'>
@@ -71,11 +59,11 @@ $fields = array(
   <tr>
   		<td>
   		 <?php 
-  		 echo anchor_popup("admin/class_admin/update/$class->id", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Edit</image>",$pop_up_atts);?>
+  		 echo anchor_popup("admin/class_admin/update/$class->id", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Sửa</image>",$pop_up_atts);?>
         </td>
          <td>
              <a href='#' onclick='showConfirmDelete(<?php echo $class->id;?>)'>
-                <image src='<?php echo $base_url;?>images/delete/delete_16x16.png' alt='Delete'>Delete</image>
+                <image src='<?php echo $base_url;?>images/delete/delete_16x16.png' alt='Delete'>Xóa</image>
              </a>
         </td>
         <td><?php echo $class->id;?></td>
@@ -91,6 +79,6 @@ $fields = array(
 	</div>
 <?php endif; ?>
 <?php else: ?>
-<h2>No records found</h2>
+<h2>Không tìm thấy lớp học nào</h2>
 <?php endif;?>
-<?php if(isset($subject_id) && $subject_id != 0){ echo anchor_popup("admin/class_admin/add", "<image src='$base_url/images/add/add_16x16.png' alt='Add'>Add subject</image>", $pop_up_atts);}?>
+<?php if(isset($subject_id) && $subject_id != 0){ echo anchor_popup("admin/class_admin/add", "<image src='$base_url/images/add/add_16x16.png' alt='Add'>Thêm Lớp Học</image>", $pop_up_atts);}?>

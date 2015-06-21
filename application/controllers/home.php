@@ -2,6 +2,7 @@
 class Home extends CI_Controller {
 	function index() {
 		
+		//if right username and password, keep session else remove session
 		if(isset($this->session->userdata['username'])) {
 			$username = $this->session->userdata['username'];
 			if(!isset($this->session->userdata['password'])) {
@@ -25,11 +26,12 @@ class Home extends CI_Controller {
 				}
 			}
 		}
-		$data['title'] = "Home Page";
+		
+		$data['title'] = "Trang chủ";
 		$data['leftmenu'] = array(
-				'Contact' => 'home'
+				'Liên Hệ' => 'home'
 		);
-		$data['content'] = "My Content";
+		$data['content'] = "Trang chủ";
 		$this->load->view('template', $data);
 	}
 }

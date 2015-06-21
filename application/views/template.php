@@ -122,12 +122,12 @@
                         if (isset($this->session->userdata['username'])) {
                             echo "<li><a href='#'>Xin chào " . $this->session->userdata['username'] . " &#12485;</a></li>";
                             ?>
-                            <li><a href="<?php echo base_url();?>login/login_controller/logout">Logout</a></li> 
+                            <li><a href="<?php echo base_url();?>login/login_controller/logout">Đăng Xuất</a></li> 
                         <?php } else { ?>
                             <!-- LOG IN : start -->
-                            <li><a href="#loginmodal" id="modaltrigger">Login</a>
+                            <li><a href="#loginmodal" id="modaltrigger">Đăng Nhập</a>
                                 <div id="loginmodal" style="display:none;">
-                                    <h1>Login information</h1>
+                                    <h1>Thông tin đăng nhập</h1>
                                     <?php echo form_open('login/login_controller/login')?>
                                         <label for="username">Username:</label>
                                         <input type="text" name="username" id="username1" class="txtfield" tabindex="1" required autofocus
@@ -174,9 +174,9 @@
                             <!-- LOG IN : end -->  
 
                             <!-- REGISTER : Start -->                        
-                            <li><a href="#registermodal" id="modaltrigger1">Sign Up</a>
+                            <li><a href="#registermodal" id="modaltrigger1">Đăng kí</a>
                                 <div id="registermodal" style="display:none;">
-                                    <h1>Sign Up Information</h1>
+                                    <h1>Thông tin đăng kí</h1>
 <!--                                     <form id="registerform" name="registerform" method="post" action="login/login/register"> -->
                                         <label for="r_username">Username:</label>
                                         <input type="text" name="r_username" id="r_username" class="txtfield" tabindex="1" required autofocus />
@@ -210,7 +210,7 @@
                                         <label for="r_email">Email:</label>
                                         <input type="email" name="r_email" id="r_email" class="txtfield" tabindex="4" required />
 
-                                        <input type="button" name="registerbtn" id="registerbtn" class="flatbtn-blu" value="Sign Up" tabindex="5" onclick="call_register()"/>
+                                        <input type="button" name="registerbtn" id="registerbtn" class="flatbtn-blu" value="Đăng kí" tabindex="5" onclick="call_register()"/>
                                         <p id='register_confirm'></p>
 <!--                                     </form>                                     -->
                                 </div>

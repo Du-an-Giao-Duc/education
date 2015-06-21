@@ -1,8 +1,8 @@
-	<h2>Thêm Chuyên Đề</h2>
-	<?php echo form_open('admin/chuyen_de_admin/add'); ?>
+	<h2>Thêm Dạng Bài</h2>
+	<?php echo form_open('admin/dang_bai_admin/add'); ?>
 	<p>
-		<?php echo form_label('Chương');?>
-		<?php echo form_input('chuong', set_value('chuong', $chuong_name), 'id="chuong" readonly="true"');?>
+		<?php echo form_label('Chuyên Đề');?>
+		<?php echo form_input('chuyen_de', set_value('chuyen_de', $chuyen_de_name), 'id="chuyen_de" readonly="true"');?>
 	</p>
 	<p>
 		<?php echo form_label('Số Thứ Tự:', 'order_number'); ?>
@@ -11,12 +11,12 @@
 	</p>
 	
 	<p>
-	<?php echo form_label('Tên Chuyên Đề');?>
+	<?php echo form_label('Tên Dạng Bài');?>
 	<?php echo form_input('name', set_value('name',''), 'id="name"');?>
 	</p>	
 	
 	<p>
-	<?php echo form_label('Mô Tả Chuyên Đề');?>
+	<?php echo form_label('Mô Tả Dạng Bài');?>
 	<?php echo form_input('description', set_value('description',''), 'id="description"');?>
 	</p>
 	

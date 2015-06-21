@@ -101,4 +101,11 @@ class Class_model extends CI_Model {
 		$query = $this->db->get('class');
 		return $query->result();
 	}
+	
+	function get_record_by_name_subject_id($name, $subject_id) {
+		$this->db->where('name', $name);
+		$this->db->where('subject_id', $subject_id);
+		$query = $this->db->get('class');
+		return $query->result();
+	}
 }

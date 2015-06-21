@@ -1,4 +1,4 @@
-	<h2>Update</h2>
+	<h2>Cập Nhật User</h2>
 	<?php if (isset($record)): $row = $record;
 	?>
 	
@@ -10,12 +10,12 @@
 	</p>
 	
 	<p>
-		<?php echo form_label('Role:', 'role'); ?>
+		<?php echo form_label('Loại User:', 'role'); ?>
 		<?php $roles = $this->config->item('roles'); echo form_input('role', $roles[$row['role']], 'id="role" readonly="true"'); ?>
 	</p>
 	
 	<p>
-		<?php echo form_label('Subjects:', 'subjects'); ?>
+		<?php echo form_label('Môn Học:', 'subjects'); ?>
 		<ul>
 		<?php foreach ($subjects as $subject) {?>
 			<li>
@@ -36,5 +36,5 @@
 	<?php echo form_close(); ?>
 	<?php echo validation_errors('<p class="error">');?>
 	<?php else: ?>
-	<h2>No record to update</h2>
+	<h2>Không tìm thấy User nào</h2>
 	<?php endif;?>

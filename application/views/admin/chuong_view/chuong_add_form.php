@@ -1,16 +1,16 @@
-	<h2>Add Class</h2>
+	<h2>Thêm Chương</h2>
 	<?php echo form_open('admin/chuong_admin/add'); ?>
 	<p>
-		<label for="subject">Class:</label>
-		<input type='text' name='subject' id='subject' readonly='true' value='<?php echo $class_name;?>'>
+		<?php echo form_label('Lớp Học');?>
+		<?php echo form_input('class', set_value('class', $class_name), 'id="class" readonly="true"');?>
 	</p>
 	<p>
-		<?php echo form_label('Order Number:', 'order_number'); ?>
+		<?php echo form_label('Số Thứ Tự:', 'order_number'); ?>
 		<?php echo form_dropdown('order_number', $order_number_options, 
 			set_value('order_number', $order_number), 'id="order_number"'); ?>
 	</p>
 	<p>
-		<?php echo form_label('Semester:', 'semester'); ?>
+		<?php echo form_label('Học Kì:', 'semester'); ?>
 		<?php $semester_options = array(
 				'1' => '1',
 				'2' => '2'
@@ -18,19 +18,19 @@
 			echo form_dropdown('semester', $semester_options, 
 			set_value('semester', '1'), 'id="semester"'); ?>
 	</p>
-		
+	
 	<p>
-		<label for="name">Chuong Name:</label>
-		<input type='text' name='name' id='name'>
+	<?php echo form_label('Tên Chương');?>
+	<?php echo form_input('name', set_value('name',''), 'id="name"');?>
+	</p>	
+	
+	<p>
+	<?php echo form_label('Mô Tả Chương');?>
+	<?php echo form_input('description', set_value('description',''), 'id="description"');?>
 	</p>
 	
 	<p>
-		<label for="description">Chuong Description:</label>
-		<input type='text' name='description' id='description'>
-	</p>
-	
-	<p>
-		<input type='submit' name='submit' value='Submit'/>
+	<?php echo form_submit('submit','Submit');?>
 	</p>
 	<?php echo form_close(); ?>
 	<?php echo validation_errors('<p class="error">'); ?>

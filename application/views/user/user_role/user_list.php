@@ -20,11 +20,11 @@ $pop_up_atts = array(
 if(isset($records)):
 $fields = array(
 		'username' => 'Username',
-		'role'     => 'Role',
-		'role_post'   => 'Role Post',
-		'role_edit'   => 'Role Edit',
+		'role'     => 'Loại User',
+		'role_post'   => 'Quyền Đăng Câu Hỏi',
+		'role_edit'   => 'Quyền Sửa Xóa Câu Hỏi',
 		'email'       => 'Email',
-		'reg_date'    => 'Reg Date'
+		'reg_date'    => 'Ngày Tạo'
 );
 ?>
 <?php echo form_open('user_admin/role_assign'); ?>
@@ -35,7 +35,7 @@ $fields = array(
 </div>
 
 <div>
-		<?php echo form_submit('submit', 'Search'); ?>
+		<?php echo form_submit('submit', 'Tìm Kiếm'); ?>
 </div>
 
 <?php echo form_close(); ?>
@@ -52,11 +52,11 @@ $fields = array(
   <tr>
   		<td>
   		 <?php 
-  		 echo anchor_popup("user_admin/role_assign/update/$user->username", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Edit</image>",$pop_up_atts);?>
+  		 echo anchor_popup("user_admin/role_assign/update/$user->username", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Sửa</image>",$pop_up_atts);?>
         </td>
          <td>
              <a href='#' onclick='showConfirmDelete("<?php echo $user->username;?>")'>
-                <image src='<?php echo $base_url;?>images/delete/delete_16x16.png' alt='Delete'>Delete</image>
+                <image src='<?php echo $base_url;?>images/delete/delete_16x16.png' alt='Delete'>Xóa</image>
              </a>
         </td>
         <td><?php echo $user->username;?></td>
@@ -69,5 +69,5 @@ $fields = array(
   <?php endforeach; ?>
 </table>
 <?php else: ?>
-<h2>No records found</h2>
+<h2>Không tìm thấy User nào</h2>
 <?php endif;?>

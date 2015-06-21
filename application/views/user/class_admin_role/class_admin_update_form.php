@@ -18,7 +18,7 @@
     }
 
 </script>
-	<h2>Update</h2>
+	<h2>Cập Nhật User</h2>
 	<?php if (isset($record)): $row = $record;
 	?>
 	
@@ -30,17 +30,17 @@
 	</p>
 	
 	<p>
-		<?php echo form_label('Role:', 'role'); ?>
+		<?php echo form_label('Loại User:', 'role'); ?>
 		<?php $roles = $this->config->item('roles'); echo form_input('role', $roles[$row['role']], 'id="role" readonly="true"'); ?>
 	</p>
 	
 	<?php if($selected_classes) {?>
 	<p>
-		<?php echo form_label('Subject:', 'subject_name'); ?>
+		<?php echo form_label('Môn Học:', 'subject_name'); ?>
 		<?php echo form_input('subject', $row['subject_name'], 'id="subject_name" readonly="true"'); ?>
 	</p>
 	<p>
-		<?php echo form_label('Classes:', 'classes'); ?>
+		<?php echo form_label('Lớp Học:', 'classes'); ?>
 		<ul>
 		<?php foreach ($classes as $class) {?>
 			<li>
@@ -56,7 +56,7 @@
 	</p>
 	<?php } else {?>
 		<p>
-					<?php echo form_label('Subject:', 'subject_name'); ?>
+					<?php echo form_label('Môn Học:', 'subject_name'); ?>
 					<?php $js = 'id="subject" onChange="get_classes();"';echo form_dropdown('subject', $subject_options, 
 						set_value('subject', '0'), $js); ?>
 		</p>
@@ -69,5 +69,5 @@
 	<?php echo form_close(); ?>
 	<?php echo validation_errors('<p class="error">');?>
 	<?php else: ?>
-	<h2>No record to update</h2>
+	<h2>Không tìm thấy User nào</h2>
 	<?php endif;?>

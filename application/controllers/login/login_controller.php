@@ -52,7 +52,7 @@ class Login_controller extends CI_Controller {
 					echo "Sai password";
 				}
 			} else {
-				echo "Ko ton tai username nay";
+				echo "Không tồn tại User này";
 			}
 			
 		}

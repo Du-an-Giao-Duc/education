@@ -1,15 +1,3 @@
-<style>
-		.sort_asc:after {
-			content: "▲";
-		}
-		.sort_desc:after {
-			content: "▼";
-		}
-		label {
-			display: inline-block;
-			width: 120px;
-		}
-</style>
 
 <script>
     function showConfirmDelete(id)
@@ -51,29 +39,29 @@ $pop_up_atts = array(
  echo form_open('admin/chuong_admin');?>
 		
 		<div>
-			<?php echo form_label('Subject:', 'subject'); ?>
+			<?php echo form_label('Môn Học:', 'subject'); ?>
 			<?php $js = 'id="subject" onChange="get_class_options();"';echo form_dropdown('subject', $subject_options, 
 				set_value('subject', $subject_id), $js); ?>
 		</div>
 		
 		<div id='class_options'>
-			<?php echo form_label('Class:', 'class'); ?>
+			<?php echo form_label('Lớp Học:', 'class'); ?>
 			<?php echo form_dropdown('class', $class_options, 
 				set_value('class', $class_id), 'id="class"'); ?>
 		</div>
 		<div>
-			<?php echo form_submit('submit', 'Search'); ?>
+			<?php echo form_submit('submit', 'Tìm Kiếm'); ?>
 		</div>
 <?php echo form_close(); ?>
 	
 <?php if(isset($records)):
 $fields = array(
 		'id' => 'ID',
-		'order_number' => 'Order Number',
-		'semester' => 'Semester',
-		'name' => 'Name',
-		'class_name' => 'Class',
-		'description' => 'Description'
+		'order_number' => 'Số Thứ Tự',
+		'semester' => 'Học Kì',
+		'name' => 'Tên Chương',
+		'class_name' => 'Lớp Học',
+		'description' => 'Mô Tả Chương'
 );
 ?>
 <table class='tblOverview'>
@@ -93,11 +81,11 @@ $fields = array(
   <tr>
   		<td>
   		 <?php 
-  		 echo anchor_popup("admin/chuong_admin/update/$chuong->id", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Edit</image>",$pop_up_atts);?>
+  		 echo anchor_popup("admin/chuong_admin/update/$chuong->id", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Sửa</image>",$pop_up_atts);?>
         </td>
          <td>
              <a href='#' onclick='showConfirmDelete(<?php echo $chuong->id;?>)'>
-                <image src='<?php echo $base_url;?>images/delete/delete_16x16.png' alt='Delete'>Delete</image>
+                <image src='<?php echo $base_url;?>images/delete/delete_16x16.png' alt='Delete'>Xóa</image>
              </a>
         </td>
         <td><?php echo $chuong->id;?></td>
@@ -115,8 +103,8 @@ $fields = array(
 	</div>
 <?php endif; ?>
 <?php else: ?>
-<h2>No records found</h2>
+<h2>Không tìm thấy chương nào</h2>
 <?php endif;?>
 <div id='add_chuong'>
-<?php if(isset($class_id) && $class_id != 0){ echo anchor_popup("admin/chuong_admin/add", "<image src='$base_url/images/add/add_16x16.png' alt='Add'>Add Chuong</image>", $pop_up_atts);}?>
+<?php if(isset($class_id) && $class_id != 0){ echo anchor_popup("admin/chuong_admin/add", "<image src='$base_url/images/add/add_16x16.png' alt='Add'>Thêm Chương</image>", $pop_up_atts);}?>
 </div>

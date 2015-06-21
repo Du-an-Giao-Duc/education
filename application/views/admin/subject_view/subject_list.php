@@ -20,8 +20,8 @@ $pop_up_atts = array(
 if(isset($records)):
 $fields = array(
 		'id' => 'ID',
-		'name' => 'Name',
-		'description' => 'Description'
+		'name' => 'Tên',
+		'description' => 'Mô Tả'
 );
 ?>
 <table class='tblOverview'>
@@ -37,11 +37,11 @@ $fields = array(
   <tr>
   		<td>
   		 <?php 
-  		 echo anchor_popup("admin/subject_admin/update/$subject->id", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Edit</image>",$pop_up_atts);?>
+  		 echo anchor_popup("admin/subject_admin/update/$subject->id", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Sửa</image>",$pop_up_atts);?>
         </td>
          <td>
              <a href='#' onclick='showConfirmDelete(<?php echo $subject->id;?>)'>
-                <image src='<?php echo $base_url;?>images/delete/delete_16x16.png' alt='Delete'>Delete</image>
+                <image src='<?php echo $base_url;?>images/delete/delete_16x16.png' alt='Delete'>Xóa</image>
              </a>
         </td>
         <td><?php echo $subject->id;?></td>
@@ -51,6 +51,6 @@ $fields = array(
   <?php endforeach; ?>
 </table>
 <?php else: ?>
-<h2>No records found</h2>
+<h2>Không tìm thấy môn học nào</h2>
 <?php endif;?>
-<?php echo anchor_popup("admin/subject_admin/add", "<image src='$base_url/images/add/add_16x16.png' alt='Add'>Add subject</image>", $pop_up_atts);?>
+<?php echo anchor_popup("admin/subject_admin/add", "<image src='$base_url/images/add/add_16x16.png' alt='Add'>Thêm Môn Học</image>", $pop_up_atts);?>

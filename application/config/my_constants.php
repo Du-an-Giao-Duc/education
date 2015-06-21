@@ -1,51 +1,51 @@
 <?php
 $left_menu = array(
-				'News'    		=> 'admin/news_admin',
-				'Subject'		=> 'admin/subject_admin',
-				'Class'         => 'admin/class_admin',
-				'Chuong'        => 'admin/chuong_admin',
-				'Chuyen De'     => 'admin/chuyen_de_admin',
-				'Dang Bai'      => 'admin/dang_bai_admin',
-				'Question Type' => 'admin/question_type_admin'
+				'Tin Tức'    		=> 'admin/news_admin',
+				'Môn Học'		=> 'admin/subject_admin',
+				'Lớp Học'         => 'admin/class_admin',
+				'Chương'        => 'admin/chuong_admin',
+				'Chuyên Đề'     => 'admin/chuyen_de_admin',
+				'Dạng Bài'      => 'admin/dang_bai_admin',
+				'Loại Câu Hỏi' => 'admin/question_type_admin'
 		);
 
 $user_admin_left_menu = array(
-		'Role Assignation'   => 'user_admin/role_assign',
-		'Subject Admin Role' => 'user_admin/subject_admin_role',
-		'Class Admin Role'   => 'user_admin/class_admin_role'
+		'Người Dùng'   => 'user_admin/role_assign',
+		'Quản Trị Môn' => 'user_admin/subject_admin_role',
+		'Quản Trị Lớp'   => 'user_admin/class_admin_role'
 );
 
 $roles = array(
-		'1' => 'Full Admin',
-		'2' => 'Subject Admin',
-		'3' => 'Class Admin',
-		'4' => 'Typing Question',
-		'5' => 'Normal User'
+		'1' => 'Quản Trị Full',
+		'2' => 'Quản Trị Môn',
+		'3' => 'Quản Trị Lớp',
+		'4' => 'Nhập Câu Hỏi',
+		'5' => 'Người Dùng'
 );
 
 $full_admin_hMenu = array(
-		'Admin'             => 'admin',
-        'User Admin' 		=> 'user_admin',
-		'Review Question'	=> 'home'
+		'Quản Trị Full'             => 'admin',
+        'Phân Quyền Quản Trị' 		=> 'user_admin',
+		'Duyệt Câu Hỏi'	=> 'home'
 );
 
 $subject_admin_hMenu = array(
-		'Admin' 			=> 'admin',
-		'Review Question' 	=> 'home'
+		'Quản trị Full' 			=> 'admin',
+		'Duyệt Câu Hỏi' 	=> 'home'
 );
 
 $class_admin_hMenu  = $subject_admin_hMenu;
 
 $typing_question_hMenu = array(
-		'Quiz'			=> 'quiz',
-		'Question'      => 'question'
+		'Nhập Theo Đề Thi'			=> 'quiz',
+		'Nhập Câu Hỏi Tự Do'      => 'question'
 );
 
 $normal_user_hMenu = array(
-		'Luyen tap'     => 'luyentap',
-		'Kho de thi'    => 'khodethi',
-		'Hoi dap'		=> 'hoidap',
-		'Tin tuc'		=> 'tintuc'
+		'Luyện Tập'     => 'luyentap',
+		'Kho Đề Thi'    => 'khodethi',
+		'Hỏi Đáp'		=> 'hoidap',
+		'Tin Tức'		=> 'tintuc'
 );
 
 $no_user_hMenu = $normal_user_hMenu;

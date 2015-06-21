@@ -6,7 +6,7 @@
         }
 
     </script>
-	<h2>Confirm</h2>
+	<h2>Xác Nhận</h2>
 	<?php if (isset($record)): $row = $record?>
 	<p>
 		<label for="username">User Name:</label>
@@ -14,11 +14,11 @@
 	</p>
 	
 	<p>
-		<label for="role">Role:</label>
+		<label for="role">Loại User:</label>
 		<label for='role'><?php $roles = $this->config->item('roles');echo $roles[$row['role']];?></label>
 	</p>
 	<p>
-		<label for="subjects">Subjects:</label>
+		<label for="subjects">Môn học:</label>
 		<ul>
 		<?php foreach ($subjects as $subject) {?>
 			<li><?php echo $subject->name;?></li>
@@ -26,7 +26,7 @@
 		</ul>
 	</p>
 	<p>
-		Action is processed successfully.
+		Xử lý thành công
 	</p>
 	
 	<?php else: ?>

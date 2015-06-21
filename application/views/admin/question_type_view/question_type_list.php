@@ -1,7 +1,7 @@
 <script>
     function showConfirmDelete(id)
     {
-        var c = confirm("Bạn có chắc chắn muốn xóa Question Type này?");
+        var c = confirm("Bạn có chắc chắn muốn xóa loại câu hỏi này?");
         if (c)
         	window.location ="question_type_admin/delete/" + id;
     }
@@ -20,8 +20,8 @@ $pop_up_atts = array(
 if(isset($records)):
 $fields = array(
 		'id' => 'ID',
-		'name' => 'Name',
-		'description' => 'Description'
+		'name' => 'Loại Câu Hỏi',
+		'description' => 'Mô Tả'
 );
 ?>
 <table class='tblOverview'>
@@ -37,11 +37,11 @@ $fields = array(
   <tr>
   		<td>
   		 <?php 
-  		 echo anchor_popup("admin/question_type_admin/update/$question_type->id", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Edit</image>",$pop_up_atts);?>
+  		 echo anchor_popup("admin/question_type_admin/update/$question_type->id", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Sửa</image>",$pop_up_atts);?>
         </td>
          <td>
              <a href='#' onclick='showConfirmDelete(<?php echo $question_type->id;?>)'>
-                <image src='<?php echo $base_url;?>images/delete/delete_16x16.png' alt='Delete'>Delete</image>
+                <image src='<?php echo $base_url;?>images/delete/delete_16x16.png' alt='Delete'>Xóa</image>
              </a>
         </td>
         <td><?php echo $question_type->id;?></td>
@@ -51,7 +51,7 @@ $fields = array(
   <?php endforeach; ?>
 </table>
 <?php else: ?>
-<h2>No records found</h2>
+<h2>Không tìm thấy loại câu hỏi nào</h2>
 <?php endif;?>
-<?php echo anchor_popup("admin/question_type_admin/add", "<image src='$base_url/images/add/add_16x16.png' alt='Add'>Add subject</image>", $pop_up_atts);?>
+<?php echo anchor_popup("admin/question_type_admin/add", "<image src='$base_url/images/add/add_16x16.png' alt='Add'>Thêm Loại Câu Hỏi</image>", $pop_up_atts);?>
 

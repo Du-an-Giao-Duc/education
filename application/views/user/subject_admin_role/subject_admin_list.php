@@ -17,15 +17,15 @@ echo form_open('user_admin/subject_admin_role'); ?>
 </div>
 
 <div>
-		<?php echo form_submit('submit', 'Search'); ?>
+		<?php echo form_submit('submit', 'Tìm Kiếm'); ?>
 </div>
 
 <?php echo form_close(); 
 if(isset($records)):
 $fields = array(
 		'username' => 'Username',
-		'role'     => 'Role',
-		'subjects'   => 'Subjects'
+		'role'     => 'Loại User',
+		'subjects'   => 'Các Môn Học'
 );
 ?>
 
@@ -41,7 +41,7 @@ $fields = array(
   <tr>
   		<td>
   		 <?php 
-  		 echo anchor_popup("user_admin/subject_admin_role/update/$username", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Edit</image>",$pop_up_atts);?>
+  		 echo anchor_popup("user_admin/subject_admin_role/update/$username", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Sửa</image>",$pop_up_atts);?>
         </td>
         <td><?php echo $user['username'];?></td>
         <td><?php $roles = $this->config->item('roles'); echo $roles[$user['role']];?></td>
@@ -56,5 +56,5 @@ $fields = array(
   <?php endforeach; ?>
 </table>
 <?php else: ?>
-<h2>No records found</h2>
+<h2>Không tìm thấy User nào</h2>
 <?php endif;?>

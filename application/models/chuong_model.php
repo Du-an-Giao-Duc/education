@@ -21,6 +21,7 @@ class Chuong_model extends CI_Model {
 		$order_number = $data['order_number'];
 		
 		$this->db->where('order_number >=', $order_number);
+		$this->db->where('class_id', $data['class_id']);
 		$records = $this->db->get('chuong')->result();
 		if ($records) {
 			foreach ($records as $chuong) {
@@ -49,6 +50,7 @@ class Chuong_model extends CI_Model {
 		if ($old_order_number < $new_order_number) {
 			$this->db->where('order_number >', $old_order_number);
 			$this->db->where('order_number <=', $new_order_number);
+			$this->db->where('class_id', $record[0]->class_id);
 			$records = $this->db->get('chuong')->result();
 			if ($records) {
 				foreach ($records as $chuong) {
@@ -60,6 +62,7 @@ class Chuong_model extends CI_Model {
 		} else if($old_order_number > $new_order_number) {
 			$this->db->where('order_number <', $old_order_number);
 			$this->db->where('order_number >=', $new_order_number);
+			$this->db->where('class_id', $record[0]->class_id);
 			$records = $this->db->get('chuong')->result();
 			if ($records) {
 				foreach ($records as $chuong) {
@@ -89,6 +92,7 @@ class Chuong_model extends CI_Model {
 		$order_number = $record[0]->order_number;
 		
 		$this->db->where('order_number >', $order_number);
+		$this->db->where('class_id', $record[0]->class_id);
 		$records = $this->db->get('chuong')->result();
 		if ($records) {
 			foreach ($records as $chuong) {

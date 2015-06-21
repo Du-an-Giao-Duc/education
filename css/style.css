@@ -3620,3 +3620,13 @@ body#mod-quiz-grading table#grading td
     vertical-align: middle;
 }
 
+.sort_asc:after {
+	content: "▲";
+}
+.sort_desc:after {
+	content: "▼";
+}
+label {
+	display: inline-block;
+	width: 120px;
+}

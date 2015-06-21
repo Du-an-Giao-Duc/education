@@ -2,9 +2,9 @@
 <script>
     function showConfirmDelete(id)
     {
-        var c = confirm("Bạn có chắc chắn muốn xóa chuyên đề này?");
+        var c = confirm("Bạn có chắc chắn muốn xóa dạng bài này?");
         if (c)
-        	window.location ="chuyen_de_admin/delete/" + id;
+        	window.location ="dang_bai_admin/delete/" + id;
     }
 
     function get_class_options() {
@@ -38,6 +38,25 @@
         	data: form_data,
         	success: function(msg) {
         		$('#chuong').html(msg);
+        		$('#chuong').change();
+        	}
+        });
+        	
+        return false;
+    }
+
+    function get_chuyen_de_options() {
+    	var form_data = {
+        		chuong_id: $('#chuong').val(),
+        		ajax: '1'		
+        };
+        	
+        $.ajax({
+        	url: "<?php echo site_url('admin/ajax/get_chuyen_de_options'); ?>",
+        	type: 'POST',
+        	data: form_data,
+        	success: function(msg) {
+        		$('#chuyen_de').html(msg);
         	}
         });
         	
@@ -55,7 +74,7 @@ $pop_up_atts = array(
 		'screenx'    => '400',
 		'screeny'    => '300'
 );
- echo form_open('admin/chuyen_de_admin');?>
+ echo form_open('admin/dang_bai_admin');?>
 		
 		<div>
 			<?php echo form_label('Môn Học:', 'subject'); ?>
@@ -70,8 +89,14 @@ $pop_up_atts = array(
 		</div>
 		<div id='chuong_options'>
 			<?php echo form_label('Chương:', 'chuong'); ?>
-			<?php echo form_dropdown('chuong', $chuong_options, 
-				set_value('chuong', $chuong_id), 'id="chuong"'); ?>
+			<?php $js = 'id="chuong" onChange="get_chuyen_de_options();"';echo form_dropdown('chuong', $chuong_options, 
+				set_value('chuong', $chuong_id), $js); ?>
+		</div>
+		
+		<div id='chuyen_de_options'>
+			<?php echo form_label('Chuyên Đề:', 'chuyen_de'); ?>
+			<?php echo form_dropdown('chuyen_de', $chuyen_de_options, 
+				set_value('chuyen_de', $chuyen_de_id), 'id="chuyen_de"'); ?>
 		</div>
 		<div>
 			<?php echo form_submit('submit', 'Tìm Kiếm'); ?>
@@ -81,12 +106,13 @@ $pop_up_atts = array(
 <?php if(isset($records)):
 $fields = array(
 		'id' => 'ID',
-		'order_number' => 'Số Thứ Tự',
-		'name' => 'Tên Chuyên Đề',
-		'chuong_name' => 'Chương',
-		'class_name' => 'Lớp Học',
-		'subject_name' =>'Môn Học',
-		'description' => 'Mô Tả Chuyên Đề'
+		'order_number' 		=> 'Số Thứ Tự',
+		'name' 				=> 'Tên Dạng Bài',
+		'chuyen_de_name' 	=>'Chuyên Đề',
+		'chuong_name' 		=> 'Chương',
+		'class_name' 		=> 'Lớp Học',
+		'subject_name' 		=>'Môn Học',
+		'description' 		=> 'Mô Tả Dạng Bài'
 );
 ?>
 <table class='tblOverview'>
@@ -95,31 +121,32 @@ $fields = array(
     <th style='width: 10%'></th>
     <?php foreach($fields as $field_name => $field_display): ?>
 			<th <?php if ($sort_by == $field_name) echo "class=\"sort_$sort_order\"" ?>>
-				<?php echo anchor("admin/chuyen_de_admin/index/$chuong_id/$field_name/" .
+				<?php echo anchor("admin/dang_bai_admin/index/$chuyen_de_id/$field_name/" .
 					(($sort_order == 'asc' && $sort_by == $field_name) ? 'desc' : 'asc') ,
 					$field_display); ?>
 			</th>
 	<?php endforeach; ?>
   </tr>
   
-  <?php foreach ($records as $chuyende): ?>
+  <?php foreach ($records as $dangbai): ?>
   <tr>
   		<td>
   		 <?php 
-  		 echo anchor_popup("admin/chuyen_de_admin/update/$chuyende->id", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Sửa</image>",$pop_up_atts);?>
+  		 echo anchor_popup("admin/dang_bai_admin/update/$dangbai->id", "<image src='$base_url/images/edit/edit_16x16.png' alt='Edit'>Sửa</image>",$pop_up_atts);?>
         </td>
          <td>
-             <a href='#' onclick='showConfirmDelete(<?php echo $chuyende->id;?>)'>
+             <a href='#' onclick='showConfirmDelete(<?php echo $dangbai->id;?>)'>
                 <image src='<?php echo $base_url;?>images/delete/delete_16x16.png' alt='Delete'>Xóa</image>
              </a>
         </td>
-        <td><?php echo $chuyende->id;?></td>
-        <td><?php echo $chuyende->order_number;?></td>
-        <td><?php echo anchor("admin/dang_bai_admin/index/$chuyende->id", "$chuyende->name");?></td>
-         <td><?php echo $chuyende->chuong_name;?></td>
-        <td><?php echo $chuyende->class_name;?></td>
-         <td><?php echo $chuyende->subject_name;?></td>
-        <td><?php echo $chuyende->description;?></td>
+        <td><?php echo $dangbai->id;?></td>
+        <td><?php echo $dangbai->order_number;?></td>
+        <td><?php echo $dangbai->name;?></td>
+        <td><?php echo $dangbai->chuyen_de_name;?></td>
+        <td><?php echo $dangbai->chuong_name;?></td>
+        <td><?php echo $dangbai->class_name;?></td>
+        <td><?php echo $dangbai->subject_name;?></td>
+        <td><?php echo $dangbai->description;?></td>
   </tr>
   <?php endforeach; ?>
 </table>
@@ -129,6 +156,6 @@ $fields = array(
 	</div>
 <?php endif; ?>
 <?php else: ?>
-<h2>Không tìm thấy chuyên đề nào</h2>
+<h2>Không tìm thấy dạng bài nào</h2>
 <?php endif;?>
-<?php if(isset($chuong_id) && $chuong_id != 0){ echo anchor_popup("admin/chuyen_de_admin/add", "<image src='$base_url/images/add/add_16x16.png' alt='Add'>Thêm Chuyên Đề</image>", $pop_up_atts);}?>
+<?php if(isset($chuyen_de_id) && $chuyen_de_id != 0){ echo anchor_popup("admin/dang_bai_admin/add", "<image src='$base_url/images/add/add_16x16.png' alt='Add'>Thêm Dạng Bài</image>", $pop_up_atts);}?>
