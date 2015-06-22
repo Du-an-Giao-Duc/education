@@ -27,11 +27,18 @@ class Home extends CI_Controller {
 			}
 		}
 		
+		$data = array();
+		$subject_options = $this->class_model->get_subject_options();
+		$data['subject_options'] = $subject_options;
+		$data['question_status_options'] = $this->config->item('question_status_options');
+		$content = $this->load->view('test_cau_hoi',$data,true);
+		
+		$data = array();
 		$data['title'] = "Trang chủ";
 		$data['leftmenu'] = array(
 				'Liên Hệ' => 'home'
 		);
-		$data['content'] = "Trang chủ";
+		$data['content'] = $content;
 		$this->load->view('template', $data);
 	}
 }

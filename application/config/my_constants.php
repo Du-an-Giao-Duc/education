@@ -63,3 +63,11 @@ $config['hMenu'] = $hMenu;
 $config['left_menu'] = $left_menu;
 $config['user_admin_left_menu'] = $user_admin_left_menu;
 $config['roles'] = $roles;
+
+$question_status_options = array(
+		'0' => 'Khóa',
+		'1' => 'Đã Duyệt',
+		'2' => 'Đăng'
+);
+
+$config['question_status_options'] = $question_status_options;
