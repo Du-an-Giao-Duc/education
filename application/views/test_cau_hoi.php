@@ -1,6 +1,6 @@
 <div id='wrapper'>
      <div id='steps'>
-     <?php echo form_open('cau_hoi','id="formElem" name="formElem" class="myFormContainer" style="padding:0px;border:none"');?>
+     <?php echo form_open('question/add','id="formElem" name="formElem" class="myFormContainer" style="padding:0px;border:none"');?>
         <?php echo form_fieldset('Câu Hỏi','class="step"');?>
 				<p>
 					<?php echo form_label('Chọn môn học:','class="myFormLabel"');?>
