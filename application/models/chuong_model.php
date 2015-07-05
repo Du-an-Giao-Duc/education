@@ -145,7 +145,7 @@ class Chuong_model extends CI_Model {
 		$sort_by = (in_array($sort_by, $sort_columns)) ? $sort_by : 'id';
 	
 		// results query
-		$q = $this->db->select('chuong.id, chuong.order_number , chuong.semester, chuong.name, class.name class_name, chuong.description')
+		$q = $this->db->select('chuong.id, chuong.semester, chuong.name, class.name class_name, chuong.description')
 		->from('chuong')
 		->join('class', 'chuong.class_id=class.id','left')
 		->join('subject','class.subject_id=subject.id','left')

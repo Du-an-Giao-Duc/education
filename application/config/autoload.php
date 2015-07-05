@@ -135,4 +135,4 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 
-$autoload['model'] = array('subject_model','class_model','chuong_model','chuyen_de_model','dang_bai_model', 'question_type_model','user_model','question_model', 'answer_model');
+$autoload['model'] = array('subject_model','class_model','chuong_model','chuyen_de_model','dang_bai_model', 'question_type_model','user_model','question_model', 'answer_model', 'school_model', 'quiz_type_model');

@@ -1,7 +1,7 @@
 <?php
 class Chuong_admin extends CI_Controller {
 function index($class_id = 0, $sort_by = 'id', $sort_order = 'asc', $offset = 0) {
-		if ($this->input->post('submit')) {
+		if ($this->input->post('submit')) { // If user clicks submit in search function
 			$subject_id = $this->input->post('subject');
 			$class_id = $this->input->post('class');
 			if(!isset($this->session->userdata['class_id']) || $this->session->userdata['class_id']!= $class_id){

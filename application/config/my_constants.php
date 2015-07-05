@@ -1,12 +1,14 @@
 <?php
 $left_menu = array(
-				'Tin Tức'    		=> 'admin/news_admin',
-				'Môn Học'		=> 'admin/subject_admin',
-				'Lớp Học'         => 'admin/class_admin',
-				'Chương'        => 'admin/chuong_admin',
-				'Chuyên Đề'     => 'admin/chuyen_de_admin',
-				'Dạng Bài'      => 'admin/dang_bai_admin',
-				'Loại Câu Hỏi' => 'admin/question_type_admin'
+				'Tin Tức'    	 => 'admin/news_admin',
+				'Môn Học'		 => 'admin/subject_admin',
+				'Lớp Học'        => 'admin/class_admin',
+				'Chương'         => 'admin/chuong_admin',
+				'Chuyên Đề'      => 'admin/chuyen_de_admin',
+				'Dạng Bài'       => 'admin/dang_bai_admin',
+				'Loại Câu Hỏi'   => 'admin/question_type_admin',
+				'Trường/Đại học' => 'admin/school_admin',
+				'Loại đề thi'    => 'admin/quiz_type_admin'
 		);
 
 $user_admin_left_menu = array(
